@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# This command expects that the map itself will be passed in via standard out.
+# To use outside of the emacs function do something like "dnd <mymap.txt".
+update $DNDDIR'/map.txt' >$DNDDIR'/index.html'
+if [ $? -eq 0 ]
+then
+echo 'DONE'
+else
+echo 'ERROR'
+fi

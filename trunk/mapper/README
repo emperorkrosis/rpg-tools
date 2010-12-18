@@ -1,0 +1,12 @@
+html -- contains the html files, images, and data files used by the scripts.
+scripts -- contains all the scripts I use to create and update the map.
+
+To get up and running:
+1. Add the info from '/scripts/dot_bashrc' to your own '.bashrc' and modify to
+   point to your own web directory.
+2. Add the 'update' and 'dnd' bash scripts to your path.
+3. Add all the files from the 'html' directory to your web directory
+   (from step 1).
+4. Create a text file with the map (mine are in /html/maps/).
+5. Run the file through the 'dnd' script and a new index.html should appear
+   in your web directory (from step 1).

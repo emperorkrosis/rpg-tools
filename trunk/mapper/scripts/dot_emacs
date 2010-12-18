@@ -1,0 +1,10 @@
+;; These entries should be placed in your .emacs to setup a keyboard shortcut
+;; for updating the map file.
+
+(defun run-dnd ()
+  (interactive)
+  (save-excursion
+    (mark-whole-buffer)
+    (shell-command-on-region (region-beginning) (region-end) "dnd")))
+
+(global-set-key (kbd "<f5>") 'run-dnd)

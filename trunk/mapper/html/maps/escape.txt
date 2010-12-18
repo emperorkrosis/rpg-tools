@@ -1,0 +1,17 @@
+The Escape
+XXXXXXXXXXX+XX+
+XXXXXXXXXXX|XX|
+XXXXXXXXXXX|==|
+XXXXXXXXXXX|==|
+XXXXXXXXXXX|==|
+XXXXXXXXXXX|==|
++-#--------+==|
+|             |
+|             |
++-#---+--#-+--+
+XXXXXX|    |52|
+XXXXXX| *  |43|
+XXXXXX| *  |  |
+XXXXXX| *  # B|
+XXXXXX|    |BB|
+XXXXXX+----+--+

@@ -1,0 +1,145 @@
+#!/bin/bash
+
+# ================== PARSE COMMAND LINE ==================
+# Store map file name
+MAPFILE=""
+ 
+# Make sure we get file name as command line argument
+# Else read it from standard input device
+if [ "$1" == "" ]; then
+   echo "Must specify map file"
+   exit 1
+else
+   MAPFILE="$1"
+   # make sure file exist and readable
+   if [ ! -f $MAPFILE ]; then
+       echo "$MAPFILE : does not exists"
+       exit 1
+   elif [ ! -r $MAPFILE ]; then
+       echo "$MAPFILE: can not read"
+       exit 2
+   fi
+fi
+# read $MAPFILE using the file descriptors
+
+# Store layout file name
+LAYOUTFILE=""
+ 
+# Make sure we get file name as command line argument
+# Else read it from standard input device
+if [ "$2" == "" ]; then
+   LAYOUTFILE="/dev/stdin"
+else
+   LAYOUTFILE="$2"
+   # make sure file exist and readable
+   if [ ! -f $LAYOUTFILE ]; then
+       echo "$LAYOUTFILE : does not exists"
+       exit 1
+   elif [ ! -r $LAYOUTFILE ]; then
+       echo "$LAYOUTFILE: can not read"
+       exit 2
+   fi
+fi
+# read $LAYOUTFILE using the file descriptors
+
+# =============== READ IN THE MAPPING ====================
+mapping[0]=""
+
+# Set the line break
+O=$IFS
+IFS=$(echo -en "\n\b")
+
+# Route the file to stdin
+exec 3<&0
+exec 0<"$MAPFILE"
+
+# Read the file
+while read -r line
+do
+# Parse the line
+char=${line:0:1}
+rest=${line:2}
+
+# Turn the character into a number
+foo=`printf '%d\n' "'$char"`
+
+# Add a mapping
+mapping[$foo]=$rest
+done
+
+# Restore the state
+exec 0<&3
+IFS=$O
+
+# ====================== WRITE THE HTML FILE ===================
+
+# This should be done better.
+# TODO(trobison): To add javascript it's probably easiest to add a script tag
+#   to the output here.
+header="<html><head><title>"
+title="Unknown Title"
+body="</title></head><body bgcolor=\"#000000\" onclick=\"window.location.reload()\" onload=\"window.setInterval('window.location.reload()', 5000)\">"
+
+imgstart="<img src=\""
+imgend="\"/>"
+br="<br>"
+
+maphtml=""
+
+footer="</body></html>"
+
+# Set the line break
+O=$IFS
+IFS=$(echo -en "\n\b")
+
+# Route the file to stdin
+exec 3<&0
+exec 0<"$LAYOUTFILE"
+
+# Read the file
+firstline=1
+while read -r line
+do
+
+if [ $firstline -eq 1 ]
+then
+title=$line
+firstline=0
+continue
+fi
+
+# Loop through characters
+count=0
+while [[ $count -lt ${#line} ]]
+do
+
+# Get the character
+tmp=${line:$count:1}
+# Turn into a number
+foo=`printf '%d\n' "'$tmp"`
+# Add the image entry
+path=${mapping[$foo]}
+if [ -z "$path" ]
+then
+path="images/unknown.png"
+fi
+maphtml=$maphtml$imgstart$path$imgend
+
+count=$count+1
+done
+
+# Add the break
+maphtml=$maphtml$br
+
+done
+
+# Restore the state
+exec 0<&3
+IFS=$O
+
+echo $header
+echo $title
+echo $body
+echo $maphtml
+echo $footer
+

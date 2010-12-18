@@ -1,0 +1,16 @@
+-,images/wall.png
++,images/wall.png
+|,images/wall.png
+ ,images/floor.png
+#,images/door.png
+*,images/desk.png
+=,images/hstair.png
+X,images/black.png
+B,images/barrel.png
+.,images/grass.png
+1,images/bard.png
+2,images/druid.png
+3,images/monk.png
+4,images/ranger.png
+5,images/sorcerer.png
+@,images/enemy.png
