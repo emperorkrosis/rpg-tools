@@ -1,0 +1,17 @@
+To the Rescue
+XXXXXXXXXXX+XX+
+XXXXXXXXXXX|XX|
+XXXXXXXXXXX|==|
+XXXXXXXXXXX|==|
+XXXXXXXXXXX|==|
+XXXXXXXXXXX|==|
++-#--------+==|
+|52           |
+|             |
++-4---+--#-+--+
+|3    |    |  |
+|     | *  |  |
+| * * | *  |  |
+|  1  | *  # B|
+| * * |    |BB|
++-----+----+--+

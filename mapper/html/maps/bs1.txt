@@ -1,0 +1,12 @@
+The Smithy
+...@@@........
+.+-#--------+.
+.|1         |.
+.|    ***** |.
+.|1  1*1    |.
+.|    *     |.
+X+----++#+##|
+XXXXXXXXX|==|
+XXXXXXXXX|==|
+XXXXXXXXX|XX|
+XXXXXXXXX+--+
