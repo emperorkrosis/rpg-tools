@@ -1,0 +1,1 @@
+This project is designed to host a set of related tools that help to run role playing games.
